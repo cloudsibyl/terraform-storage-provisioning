@@ -19,3 +19,8 @@ variable "cloudsibyl_external_id" {
   type        = string
 }
 
+variable "enable_cloudsibyl_access" {
+  description = "Whether to create CloudSibyl IAM role after bucket is set up"
+  type        = bool
+  default     = false
+}
