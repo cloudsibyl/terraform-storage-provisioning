@@ -28,38 +28,27 @@ git clone https://github.com/cloudsibyl/terraform-storage-provisioning.git
 cd terraform-storage-provisionning/aws-s3-bucket
 ```
 
-4. Add your information in terraform.tfvars file:
+4. Install Terraform if not installed yet
+```bash
+make init
+```
+5. Add your information in terraform.tfvars file:
 ctrl+o to write out, enter to save and ctrl+x to exit
 ```bash
 nano terraform.tfvars
 ```
 
-5. Create storage instance and grand read and write access to Snowflake:
+6. Create storage instance and grand read and write access to Snowflake:
 ```bash
 make snowflake
 ```
 
-6. Grant read access to CloudSibyl:
+7. Grant read access to CloudSibyl:
 ```bash
 make cloudsibyl
 ```
 
-~~4. Initialize terraform here:~~
-```bash
-terraform init
-```
-
-~~4. Run Terraform with desired organization name and storage regions:~~
-
-**NB: Make sure you are logged in to your AWS account or declared relevant environment variables.**
-```bash
-terraform apply \
--var="org_name=<your-organization-name>" \
--var="aws_region=<region-of-S3-bucket>" \
--var="cloudsibyl_external_id=<your-external-id-from-cloudsibyl>"
-```
-
-5. Retrieve credentials
+8. Retrieve credentials
 You should be able to see the generated credentials in
 ```bash
 ./aws-s3-bucket/cloudsibyl_role_info.txt
