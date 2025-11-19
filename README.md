@@ -1,24 +1,55 @@
 # snowflake-data-collector
 Snowflake Data Collector
 
+
 ## Optionally use Terraform to create storage on AWS, Azure or GCP
+
+## Authentication Methods Used
+
+| Cloud Providers | Storage Name | Write Authentication Method | Read Authentication Method |
+| :-------------: | :-------------: | :--------------------: | :----------------------: |
+| [AWS](#creating-s3-bucket-on-aws)  | S3 Bucket | IAM user |  Assumed IAM role |
+| [Azure](#creating-blob-storage-container-on-azure)   | Container inside blob storage | TBD |  TBD | 
+| [GCP](#creating-gcs-bucket-on-gcp) | GCS Bucket | TBD |  TBD |
 
 ### Creating S3 bucket on AWS:
 
 
-1. Install Terraform
+1. Log in to your AWS Console and open CloudShell
 
-2. Go to the terraform for aws directory:
+2. Clone this repository in current or desired directory:
+
+```bash
+git clone https://github.com/cloudsibyl/terraform-storage-provisioning.git
+```
+
+3. Go to the terraform for aws directory:
 ```bash
 cd terraform-storage-provisionning/aws-s3-bucket
 ```
 
-3. Initialize terraform here:
+4. Add your information in terraform.tfvars file:
+ctrl+o to write out, enter to save and ctrl+x to exit
+```bash
+nano terraform.tfvars
+```
+
+5. Create storage instance and grand read and write access to Snowflake:
+```bash
+make snowflake
+```
+
+6. Grant read access to CloudSibyl:
+```bash
+make cloudsibyl
+```
+
+~~4. Initialize terraform here:~~
 ```bash
 terraform init
 ```
 
-4. Run Terraform with desired organization name and storage regions:
+~~4. Run Terraform with desired organization name and storage regions:~~
 
 **NB: Make sure you are logged in to your AWS account or declared relevant environment variables.**
 ```bash
@@ -40,12 +71,3 @@ You should be able to see the generated credentials in
 
 
 ### Creating GCS bucket on GCP:
-
-
-## Authentication Methods Used
-
-| Cloud Providers | Storage Name | Write Authentication Method | Read Authentication Method |
-| :-------------: | :-------------: | :--------------------: | :----------------------: |
-| AWS     | S3 Bucket | IAM user |  Assumed IAM role |
-| Azure   | Container inside blob storage | TBD |  TBD | 
-| GCP     | GCS Bucket | TBD |  TBD |
