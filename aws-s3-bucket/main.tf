@@ -78,7 +78,7 @@ resource "aws_iam_policy" "cloudsibyl_s3_readonly" {
   name = "${var.org_name}-cloudsibyl-s3-readonly-policy"
 
   policy = jsonencode({
-    # Version = "2012-10-17"
+    Version = "2012-10-17"
     Statement = [
       {
         Effect = "Allow"
